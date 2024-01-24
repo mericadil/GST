@@ -1,0 +1,1175 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V3D20SW4N4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-V3D20SW4N4');
+</script>
+	
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Generalizable Style Transfer</title>
+  <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta property="og:site_name" content="Generalizable Style Transfer" />
+  <meta property="og:type" content="video.other" />
+  <meta property="og:title" content="Generalizable Style Transfer" />
+  <meta property="og:description" content="Generalizable Style Transfer" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/codemirror.min.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/codemirror.min.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/video_comparison.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</head>
+
+<body>
+  <br>
+  <center>
+		<span style="font-size:36px">Generalizable Style Transfer</span>
+		<table align=center width=500px>
+			<table align=center width=500px>
+				<tr>
+					<td align=center width=200px>
+						<center>
+							<span style="font-size:24px"><a href="https://tr.wikipedia.org/wiki/Ali_%C5%9Eamil">Adil Meriç</a></span>
+						</center>
+					</td>
+					<td align=center width=200px>
+						<center>
+							<span style="font-size:24px"><a href="https://tr.wikipedia.org/wiki/Ali_%C5%9Eamil">Umut Kocasarı</a></span>
+						</center>
+					</td>
+					<td align=center width=200px>
+						<center>
+							<span style="font-size:24px"><a href="https://tr.wikipedia.org/wiki/Ali_%C5%9Eamil">Barbara Rössle</a></span>
+						</center>
+					</td>
+				</tr>
+			</table>
+		</table>
+	</center>
+   <!-- <div class="highlight-clean" style="padding-bottom: 10px;">
+	<div class="container" style="max-width: 950px;  margin: 0 auto;">
+    <div class="container" style="max-width: 950px; margin: 0 auto;">
+      <div class="row" id="title-row" style="max-width: 100%;">
+          <h1 class="col-md-12 text-center" id="title">
+              Generalizable Style Transfer<br>
+          </h1>
+      </div>
+  </div>
+	</div>
+	<div class="container" style="max-width: 950px;">
+		<div class="row" id="author-row" style="margin:0 auto;">
+      <div class="col-md-12 text-center" style="display: table; margin:0 auto">
+          <table class="author-table" id="author-table">
+              <tr>
+                  <td>
+                      <a style="text-decoration:none" href="https://kunhao-liu.github.io/">
+                        <b>Adil Meriç</b>
+                      </a>
+                      <br>TUM
+                  </td>
+                  <td>
+                      <a style="text-decoration:none" href="https://fnzhan.com/">
+                        <b>Umut Kocasarı</b>
+                      </a>
+                      <br>TUM
+                  </td>
+                  <td>
+                      <span style="text-decoration:none" >
+                        <b>Barbara Rössle</b>
+                      </span>
+                      <br>TUM
+                  </td>
+            </tr>
+          </table>
+      </div>
+  </div>   
+	</div> -->
+
+
+  <hr class="divider" />
+    <div class="container" style="max-width: 1000px;">
+        <div class="row">
+          <div class="col-sm-12">
+              <h2>Feature Transformation w/ mean and std loss</h2>
+              <p class="text-justify">
+                  
+              </p>
+              <i>Open fullscreen for details</i>
+          </div>
+      </div>
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+      </div>
+      <div class="row">  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\julio-resendevoo-de-aves-1996.jpg" class="img-responsive" alt="overview" width="50%" style="width: 250px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\orgenluigi-guardigliunknown-title-2.jpg" class="img-responsive" alt="overview" width="50%" style="width: 250px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\oskar-kokoschka_not_detected_235932.jpg" class="img-responsive" alt="overview" width="50%" style="width: 250px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\pablo-picasso_manola.jpg" class="img-responsive" alt="overview" width="50%" style="width: 100px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\pablo-picasso_manola\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\pablo-picasso_the-family-of-blind-man-1903.jpg" class="img-responsive" alt="overview" width="50%" style="width: 200px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\Port-en-Bessin,Sunday.jpg" class="img-responsive" alt="overview" width="50%" style="width: 250px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\rafael-zabaleta_harlequin-and-clown-with-mask-1942.jpg" class="img-responsive" alt="overview" width="50%" style="width: 250px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Style loss 30</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_30_very_long\850\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_100_very_long\400\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 500</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_500\250\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+      
+      <hr class="divider" />
+    <div class="container" style="max-width:1000px;">
+        <div class="row">
+          <div class="col-sm-12">
+              <h2>Feature Transformation changes over epoch (tested on style loss 65)</h2>
+              <p class="text-justify">
+                  
+              </p>
+              <i>Open fullscreen for details</i>
+          </div>
+      </div>
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\Port-en-Bessin,Sunday.jpg" class="img-responsive" alt="overview" width="50%" style="width: 200px;margin:auto;">
+      </div>
+      <div class="row">  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Epoch 275</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\275\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Epoch 475</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\475\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Epoch 850</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Epoch 1025</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_65_very_long\1025\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\orgenluigi-guardigliunknown-title-2.jpg" class="img-responsive" alt="overview" width="50%" style="width:250px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Epoch 275</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\275\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Epoch 475</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\475\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Epoch 850</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Epoch 1025</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_65_very_long\1025\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <span>Style image</span>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          
+          <image src="assets\images\pablo-picasso_manola.jpg" class="img-responsive" alt="overview" width="50%" style="width: 100px;margin:auto;">
+      </div>
+      <div class="row">
+          <!-- First Column (Images) -->
+  
+          <!-- Remaining Columns (Videos) -->
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <b>Epoch 275</b>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\275\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Epoch 475</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\475\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+  
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Epoch 850</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\mean_std_only_videos\style_65_very_long\850\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Epoch 1025</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\mean_std_only_videos\style_65_very_long\1025\pablo-picasso_manola\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <div class="container" style="max-width: 1000px;">
+          <div class="row">
+            <div class="col-sm-12">
+                <h2>Cross Attention (default number of heads = 2)</h2>
+                <p class="text-justify">
+                    
+                </p>
+                <i>Open fullscreen for details</i>
+            </div>
+        </div>
+        <div class="row text-center">
+          <span>Style image</span>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            
+            <image src="assets\images\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+        </div>
+        <div class="row">  
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <b>Style loss 50</b>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long\780\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+    
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 65</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_65_id_long\1000\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+    
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 100</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_100_id_long\480\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 50 gradient accumulation 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 65 multi-head 8</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+            <span>Style loss 100 multi-head 8</span>
+            <div class="embed-responsive embed-responsive-4by3">
+                <video controls loop muted autoplay class="embed-responsive-item">
+                    <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\gustave-dore_dandolo-doge-of-venice-preaching-the-crusade\video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        </div>
+        <div class="row text-center">
+            <span>Style image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              
+              <image src="assets\images\julio-resendevoo-de-aves-1996.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+          </div>
+          <div class="row">  
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <b>Style loss 50</b>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_50_id_long\780\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 65</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_65_id_long\1000\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 100</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_100_id_long\480\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 50 gradient accumulation 8</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\julio-resendevoo-de-aves-1996\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          </div>
+
+          <div class="row text-center">
+            <span>Style image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              
+              <image src="assets\images\orgenluigi-guardigliunknown-title-2.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+          </div>
+          <div class="row">  
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <b>Style loss 50</b>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_50_id_long\780\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 65</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_65_id_long\1000\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 100</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_100_id_long\480\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 50 gradient accumulation 8</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\orgenluigi-guardigliunknown-title-2\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          </div>
+
+          <div class="row text-center">
+            <span>Style image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              
+              <image src="assets\images\oskar-kokoschka_not_detected_235932.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+          </div>
+          <div class="row">  
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <b>Style loss 50</b>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_50_id_long\780\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 65</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_65_id_long\1000\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 100</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_100_id_long\480\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 50 gradient accumulation 8</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\oskar-kokoschka_not_detected_235932\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          </div>
+
+          <div class="row text-center">
+            <span>Style image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              
+              <image src="assets\images\pablo-picasso_manola.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+          </div>
+          <div class="row">  
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <b>Style loss 50</b>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_50_id_long\780\pablo-picasso_manola\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 65</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_65_id_long\1000\pablo-picasso_manola\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 100</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_100_id_long\480\pablo-picasso_manola\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 50 gradient accumulation 8</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\pablo-picasso_manola\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\pablo-picasso_manola\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          </div>
+
+          <div class="row text-center">
+            <span>Style image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              
+              <image src="assets\images\pablo-picasso_the-family-of-blind-man-1903.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+          </div>
+          <div class="row">  
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <b>Style loss 50</b>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_50_id_long\780\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 65</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_65_id_long\1000\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 100</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_100_id_long\480\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 50 gradient accumulation 8</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\pablo-picasso_the-family-of-blind-man-1903\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          </div>
+
+          <div class="row text-center">
+            <span>Style image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              
+              <image src="assets\images\Port-en-Bessin,Sunday.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+          </div>
+          <div class="row">  
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <b>Style loss 50</b>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_50_id_long\780\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 65</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_65_id_long\1000\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 100</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_100_id_long\480\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 50 gradient accumulation 8</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\Port-en-Bessin,Sunday\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          </div>
+
+          <div class="row text-center">
+            <span>Style image</span>
+          </div>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              
+              <image src="assets\images\rafael-zabaleta_harlequin-and-clown-with-mask-1942.jpg" class="img-responsive" alt="overview" width="50%" style="width: 150px;margin:auto;">
+          </div>
+          <div class="row">  
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <b>Style loss 50</b>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_50_id_long\780\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 65</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_65_id_long\1000\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+      
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                  <span>Style loss 100</span>
+                  <div class="embed-responsive embed-responsive-4by3">
+                      <video controls loop muted autoplay class="embed-responsive-item">
+                          <source src="assets\cross_attention_videos\style_100_id_long\480\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                      </video>
+                  </div>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+                <span>Style loss 50 gradient accumulation 8</span>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <video controls loop muted autoplay class="embed-responsive-item">
+                        <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 65 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 gallery center-block text-center">
+              <span>Style loss 100 multi-head 8</span>
+              <div class="embed-responsive embed-responsive-4by3">
+                  <video controls loop muted autoplay class="embed-responsive-item">
+                      <source src="assets\cross_attention_videos\style_50_id_long_acc8\780\rafael-zabaleta_harlequin-and-clown-with-mask-1942\video.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+          </div>
+
+    <hr class="divider" />
+    <div class="container" style="max-width:950px;">
+      <div class="row">
+          <div class="col-md-12">
+              <h2>Acknowledgements</h2>
+              <p>This webpage integrates components from many websites, including <a href="https://dorverbin.github.io/refnerf/">RefNeRF</a>, <a href="https://m-niemeyer.github.io/regnerf/">RegNeRF</a>, <a href="https://dreamfusion3d.github.io/">DreamFusion</a>, and <a href="https://richzhang.github.io/webpage-template/">Richard Zhang's template</a>.
+                We sincerely thank the authors for their great work and websites.</p>
+                <br></p>
+            </div>
+          </div>
+    </div>
+
+    <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
+    <script src="/assets/js/yall.js"></script>
+    <script>
+        yall(
+            {
+                observeChanges: true
+            }
+        );
+    </script>
+    <script src="/assets/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>
+    <!-- Import the component -->
+</body>
+
+</html>
